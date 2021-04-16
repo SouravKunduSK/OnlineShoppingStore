@@ -5,6 +5,9 @@
     ViewBag.Title = "Home Page";
 }
 
+
+
+
 <div id="themeSlider" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
@@ -18,7 +21,7 @@
             <img style="height:500px; width:100%" src="~/Images/pngwing.com (9).png" alt="First slide">
             <div class="carousel-caption">
                 @*<h3>First slide</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
             </div>
         </div>
         <div class="item">
@@ -26,7 +29,7 @@
             <img style="height:500px; width:100%" src="~/Images/pngwing.com (30).png" alt="Second slide">
             <div class="carousel-caption">
                 @*<h3>Second slide</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
             </div>
         </div>
         <div class="item">
@@ -34,7 +37,7 @@
             <img style="height:500px; width:100%" src="~/Images/pngwing.com (28).png" alt="Third slide">
             <div class="carousel-caption">
                 @*<h3>Third slide</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
             </div>
         </div>
     </div>
@@ -48,18 +51,18 @@
 </div>
 
 
-    <div class="olContent f1"><h2 style="color:black">Search Product</h2></div>
-    <form method="post">
-        <div class="olSearch fr">
-            <input type="text" name="search" placeholder="Enter Keyword" class="inputComn houseText form-control" />
-            <div class="searchIcon">
-                <button type="button" class="searchBtn">
-                    <img height="20"
-                         src="~/Images/pngwing.com (11).png" />
-                </button>
-            </div>
+<div class="olContent f1"><h2 style="color:black">Search Product</h2></div>
+<form method="post">
+    <div class="olSearch fr">
+        <input type="text" name="search" placeholder="Enter Keyword" class="inputComn houseText form-control" />
+        <div class="searchIcon">
+            <button type="button" class="searchBtn">
+                <img height="20"
+                     src="~/Images/pngwing.com (11).png" />
+            </button>
         </div>
-    </form>
+    </div>
+</form>
 
 <div class="row">
     <div class="col-md-12">
@@ -80,18 +83,18 @@
                 <div class="caption">
                     <h5>@item.ProductName</h5>
                     <p>@item.Price</p>
-                   
-                  
-                    
+
+
+
                     <p>
                         @if (item.Quantity > 0)
-                        {  
+                        {
                             using (Html.BeginForm("AddToCart", "Home", new { productId = item.ProductId }, FormMethod.Post))
                             {
                                 <button type="submit" class="pull-right"><i class="fa fa-shopping-cart"></i></button>
                             }
                         <p>Available</p>
-                         }
+                    }
                     else
                     {
                         <p>Not in Stock</p>
@@ -113,7 +116,7 @@
                 </div>
             </div>
         }
-   
+
 </div>
 
 <div class="container">

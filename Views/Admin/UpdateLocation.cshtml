@@ -1,6 +1,7 @@
-﻿@model OnlineShoppingStore.Models.CategoryDetail
+﻿@model OnlineShoppingStore.Models.Location
+
 @{
-    ViewBag.Title = "UpdateCategory";
+    ViewBag.Title = "UpdateLocation";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -12,7 +13,7 @@
             <a href="#">Dashboard</a>
         </li>
         <li class="breadcrumb-item ">Categories</li>
-        <li class="breadcrumb-item active">Add New Category</li>
+        <li class="breadcrumb-item active">Add New District</li>
 
 
     </ol>
@@ -20,19 +21,19 @@
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            Add New Category
+            Add New District
 
         </div>
         <div class="card-body">
-            @using (Html.BeginForm("UpdateCategory", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("UpdateLocation", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                @Html.HiddenFor(m => m.CategoryId)
+                @Html.HiddenFor(m => m.LocationId)
 
                 <div class="form-group">
-                    <label class="control-label">Category Name</label>
+                    <label class="control-label">Location Name</label>
 
-                    @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder = "Enter category Name", required = "required", autofocus = "autofocus" })
-                    @Html.ValidationMessageFor(m => m.CategoryName, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.LocationName, new { @class = "form-control", placeholder = "Enter Location Name", required = "required", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.LocationName, "", new { @class = "text-danger" })
                 </div>
 
                 <a onclick="window.history.back();" class="btn btn-danger">Cancel</a>

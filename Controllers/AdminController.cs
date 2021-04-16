@@ -42,10 +42,67 @@ namespace OnlineShoppingStore.Controllers
             return View();
         }
 
+        public ActionResult Location()
+        {
+
+            return View(_unitOfWork.GetRepositoryInstance<tbl_Location>().GetProduct());
+
+        }
+
+        public ActionResult AddLocation()
+        {
+            return UpdateLocation(0);
+        }
+
+
+        [HttpPost]
+        public ActionResult UpdateLocation(tbl_Location tbl)
+        {
+
+            _unitOfWork.GetRepositoryInstance<tbl_Location>().Add(tbl);
+            return RedirectToAction("Location");
+        }
+
+        public ActionResult UpdateLocation(int locId)
+        {
+            Location cd;
+            if (locId != 0)
+            {
+                cd = JsonConvert.DeserializeObject<Location>(JsonConvert.SerializeObject(_unitOfWork.GetRepositoryInstance<tbl_Location>().GetFirstorDefault(locId)));
+            }
+            else
+            {
+
+                cd = new Location();
+            }
+            return View("UpdateLocation", cd);
+
+        }
+
+        public ActionResult LocationEdit(int locId)
+        {
+
+            return View(_unitOfWork.GetRepositoryInstance<tbl_Location>().GetFirstorDefault(locId));
+        }
+
+        [HttpPost]
+        public ActionResult LocationEdit(tbl_Location tbl)
+        {
+
+            _unitOfWork.GetRepositoryInstance< tbl_Location > ().Update(tbl);
+            return RedirectToAction("Location");
+        }
+
+
+
+
+
+
         public ActionResult Categories()
         {
-            List<tbl_Category> allcategories = _unitOfWork.GetRepositoryInstance<tbl_Category>().GetAllRecordsIQueryable().Where(i => i.IsDelete == false).ToList();
-            return View(allcategories);
+            
+            return View(_unitOfWork.GetRepositoryInstance<tbl_Category>().GetProduct());
+           
         }
 
         public ActionResult AddCategory()
@@ -53,23 +110,30 @@ namespace OnlineShoppingStore.Controllers
             return UpdateCategory(0);
         }
 
-      
+       
+        [HttpPost]
+        public ActionResult UpdateCategory(tbl_Category tbl)
+        {
+
+            _unitOfWork.GetRepositoryInstance<tbl_Category>().Add(tbl);
+            return RedirectToAction("Categories");
+        }
 
         public ActionResult UpdateCategory(int categoryId)
         {
             CategoryDetail cd;
             if (categoryId != 0)
-            {
+            { 
                 cd = JsonConvert.DeserializeObject<CategoryDetail>(JsonConvert.SerializeObject(_unitOfWork.GetRepositoryInstance<tbl_Category>().GetFirstorDefault(categoryId)));
             }
             else
             {
+
                 cd = new CategoryDetail();
             }
             return View("UpdateCategory", cd);
 
         }
-
         public ActionResult CategoryEdit(int catId)
         {
             
@@ -135,6 +199,7 @@ namespace OnlineShoppingStore.Controllers
 
             tbl.CreatedDate = DateTime.Now;
             _unitOfWork.GetRepositoryInstance<tbl_Product>().Add(tbl);
+
             return RedirectToAction("Product");
         }
     }

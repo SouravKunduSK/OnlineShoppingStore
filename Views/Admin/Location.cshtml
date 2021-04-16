@@ -1,22 +1,23 @@
-﻿@model List<OnlineShoppingStore.DAL.tbl_Category>
+﻿@model List<OnlineShoppingStore.DAL.tbl_Location>
 @{
-    ViewBag.Title = "Categories";
+    ViewBag.Title = "Location";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <div class="container-fluid">
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Categories</li>
+        <li class="breadcrumb-item active">Location</li>
     </ol>
     <!-- DataTables Example -->
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            Category Details
-            <a href="../Admin/AddCategory" class="btn btn-info pull-right fa fa-plus">Add New</a>
+            Location Details
+            <a href="../Admin/AddLocation" class="btn btn-info pull-right fa fa-plus">Add New</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,7 +25,7 @@
                     <thead>
                         <tr>
                             <th>Sr. No.</th>
-                            <th>Category Name</th>
+                            <th>District Name</th>
                             <th>Action</th>
 
                         </tr>
@@ -32,7 +33,7 @@
                     <tfoot>
                         <tr>
                             <th>Sr. No.</th>
-                            <th>Category Name</th>
+                            <th>District Name</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -40,15 +41,16 @@
                         @foreach (var item in Model)
                         {
                             //int count = 1;
-                            <tr>
-                                <td>@(Model.IndexOf(item)+1)</td>
-                                <td>@item.CategoryName</td>
-                                <td>
+                        <tr>
+                            <td>@(Model.IndexOf(item)+1)</td>
+                            <td>@item.LocationName</td>
+                            
+                            <td>
 
-                                    @Html.ActionLink("Edit", "CategoryEdit", new { catId = item.CategoryId })
-                                </td>
+            @Html.ActionLink("Edit", "LocationEdit", new { locId = item.LocationId })
+        </td>
 
-                            </tr>
+                        </tr>
                             //count++;
                         }
 
@@ -59,4 +61,3 @@
         </div>
     </div>
 </div>
-
