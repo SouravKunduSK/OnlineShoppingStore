@@ -1,0 +1,66 @@
+﻿@using MyOnlineShoppingStore.Models.Home
+@{
+    ViewBag.Title = "CheckoutDetails";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2>Check Out Details</h2>
+@if (Session["login"] == null)
+{
+    <div class="alert alert-danger">
+        <strong>No product added to cart!</strong>
+    </div>
+
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Line Total</th>
+                
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int Total = 0;
+            }
+            @foreach (Item item in (List<Item>)Session["login"])
+            {
+                int lineTotal = Convert.ToInt32(item.Quantity * item.Product.Price);
+                Total = Convert.ToInt32(@Total + lineTotal);
+
+                Session["SesTotal"] = Total;
+
+                <tr>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.Product.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@lineTotal</td>
+                </tr>
+            }
+
+
+
+        </tbody>
+        <tr>
+            <td class="total" align="center" colspan="4"><b>Sub-Total    : @Total</b></td>
+        </tr>
+        <tr>
+            @{ int ShippingCharge = Convert.ToInt32(55);
+                Total = @Total + ShippingCharge;
+                    } 
+            <td align="center" colspan="4"><b>Shipping Charge    : @ShippingCharge</b></td>
+            
+
+        </tr>
+        <tr><td class="total" align="center" colspan="4"><b>Total    : @Total</b></td></tr>
+    </table>
+    <a href="@Url.Action("Shipping","User")" class="btn btn-success">Confirm Address></a>
+
+}
